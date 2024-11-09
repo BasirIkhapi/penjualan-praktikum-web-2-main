@@ -5,15 +5,17 @@ class User extends CI_Controller
 {
     public function __construct()
     {
+
         parent::__construct();
         $this->load->model("User_model");
-        $this->load->library("form_validation");
+        $this->load->library('form_validation');
     }
     public function index()
     {
+
         $data = array(
             'title' => 'View Data User',
-            'user' => $this->User_model->getALL(),
+            'user' => $this->User_model->getAll(),
             'content' => 'user/index'
         );
         $this->load->view('template/main', $data);
@@ -27,14 +29,16 @@ class User extends CI_Controller
         );
         $this->load->view('template/main', $data);
     }
-    public function save()
+
+    public function Save()
     {
         $this->User_model->Save();
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata("success", "Data User Berhasil Disimpan");
+            $this->session->set_flashdata("success", "Data user berhasil disimpan!");
         }
         redirect('user');
     }
+
     public function getedit($id)
     {
         $data = array(
@@ -49,7 +53,7 @@ class User extends CI_Controller
     {
         $this->User_model->editData();
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata("success", "Data User Berhasil Diupdate");
+            $this->session->set_flashdata("success", "Data user berhasil di-Update!");
         }
         redirect('user');
     }
